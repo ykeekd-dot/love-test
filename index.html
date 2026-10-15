@@ -23,13 +23,13 @@ const questions=[
 ];
 const results={everyday:{name:'일상 공유형 현실적 로맨티스트',emoji:'☕',sub:'사랑은 거창한 이벤트보다, 함께하는 평범한 하루에 있어요.',traits:['일상의 다정함','함께하는 시간','꾸준한 애정','따뜻한 현실감'],strong:'상대에게 먼저 다가갈 줄 알고, 함께할 일상을 풍성하게 만드는 사람. 특별한 이벤트 없이도 둘만의 순간을 행복하게 느끼는 능력이 있어요.',care:'내가 맞춰주는 만큼 상대도 나를 살피고 있는지 확인해요. 편안한 사랑도 나 혼자 만드는 것은 아니니까요.',match:'다정함을 말보다 행동으로 보여주고, 작은 약속을 꾸준히 지키는 사람.'},secure:{name:'든든한 신뢰형 파트너',emoji:'🪴',sub:'설렘도 좋지만, 마음 놓이는 관계가 더 소중해요.',traits:['신뢰','일관성','정서적 안정','깊은 유대'],strong:'관계의 기초를 튼튼하게 쌓고 약속을 소중히 여겨요. 상대와 안정적으로 마음을 나누는 데 강점이 있어요.',care:'모든 게 확실해야만 사랑이 시작되는 건 아니에요. 작은 불확실성에도 여유를 남겨봐요.',match:'약속을 지키고 불편한 대화도 피하지 않는 사람.'},spark:{name:'설렘 탐험형 로맨티스트',emoji:'✨',sub:'두근거림과 새로운 경험이 사랑을 반짝이게 해요.',traits:['설렘','표현력','새로운 경험','낭만'],strong:'관계에 에너지를 불어넣고 특별한 추억을 만들 줄 알아요. 감정을 솔직하게 느끼고 표현하는 매력이 있어요.',care:'강렬한 시작만큼 일상의 안정감도 가치 있어요. 설렘이 잦아들어도 사랑은 깊어질 수 있어요.',match:'모험심이 있으면서도 꾸준히 마음을 표현하는 사람.'},calm:{name:'잔잔한 독립형 동반자',emoji:'🌙',sub:'각자의 세계를 존중하면서도 나란히 걷고 싶어요.',traits:['독립성','배려','여유','자율성'],strong:'관계 안에서도 자신의 일상을 잘 지키고 상대의 속도를 존중해요. 편안한 공간을 만들어줘요.',care:'혼자 해결하려고만 하지 않아도 괜찮아요. 필요한 애정과 관심을 말해도 좋아요.',match:'서로의 공간을 존중하면서 중요한 순간엔 꼭 함께하는 사람.'},real:{name:'미래 설계형 진지한 연인',emoji:'💌',sub:'오늘의 행복과 내일의 방향을 함께 바라봐요.',traits:['미래 지향','진지함','상호 배려','현실 감각'],strong:'말뿐인 약속보다 행동과 계획을 소중하게 여겨요. 오래 함께할 수 있는 삶의 방향을 고민해요.',care:'조건이 완벽히 맞지 않더라도 두 사람이 함께 조율하며 성장할 수 있어요.',match:'가치관을 솔직하게 이야기하고 함께 계획을 세우는 사람.'}};
 // Supabase Project URL and publishable/anon key (never use service_role/secret keys here).
-const SUPABASE_URL = 'PASTE_SUPABASE_PROJECT_URL';
-const SUPABASE_KEY = 'PASTE_SUPABASE_PUBLISHABLE_KEY';
+const SUPABASE_URL = 'https://rguaeumvlccfofkdgpjo.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_lW80F2pACv811v2AazP2hA_5jE1ySVE';
 const statsEnabled = SUPABASE_URL.startsWith('https://') && !SUPABASE_KEY.startsWith('PASTE_');
 const typeOrder=['everyday','secure','spark','calm','real'];
 function participantId(){let id=localStorage.getItem('loveTestParticipantId');if(!id){id=crypto.randomUUID();localStorage.setItem('loveTestParticipantId',id)}return id}
 async function callRpc(name,body={}){
- const res=await fetch(`${SUPABASE_URL.replace(/\/$/,'')}/rest/v1/rpc/${name}`,{method:'POST',headers:{'apikey':SUPABASE_KEY,'Authorization':`Bearer ${SUPABASE_KEY}`,'Content-Type':'application/json'},body:JSON.stringify(body)});
+ const res=await fetch(`${SUPABASE_URL.replace(/\/$/,'')}/rest/v1/rpc/${name}`,{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify(body)});
  if(!res.ok)throw new Error('통계 서버 응답 오류 '+res.status);
  return await res.json();
 }
